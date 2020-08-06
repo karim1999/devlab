@@ -4,9 +4,9 @@
     <div class="col-12 col-lg-4 row mt-0 px-0">
         <div class="col-12   ">
 
-            
 
-            
+
+
 
 
             <div class=" col-12  row py-4 px-1 px-md-3 mt-2" style=" position: relative;background: #fff;border-radius: 8px!important;box-shadow: 0px 0px 10px #ddd!important;">
@@ -19,7 +19,7 @@
                             <div class="col-9 text-left">
                                 <h6 class="my-0 py-0 cairo font-1">عدد المستخدمين</h6>
                                 <h6 class="my-0 py-0 cairo mt-2" style="font-size: 16px;letter-spacing: 2px;font-weight: bold;">
-                                    @php 
+                                    @php
                                     echo \App\User::get()->count();
                                     @endphp
                                 </h6>
@@ -34,7 +34,7 @@
                             <div class="col-9 text-left">
                                 <h6 class="my-0 py-0 cairo font-1">عدد المواقع</h6>
                                 <h6 class="my-0 py-0 cairo mt-2" style="font-size: 16px;letter-spacing: 2px;font-weight: bold;">
-                                    @php 
+                                    @php
                                     echo \App\Website::get()->count();
                                     @endphp
 
@@ -50,7 +50,7 @@
                             <div class="col-9 text-left">
                                 <h6 class="my-0 py-0 cairo font-1">ذات اولوية</h6>
                                 <h6 class="my-0 py-0 cairo mt-2" style="font-size: 16px;letter-spacing: 2px;font-weight: bold;">
-                                    @php 
+                                    @php
                                     echo \App\Website::where('periorety',true)->get()->count();
                                     @endphp
 
@@ -67,13 +67,13 @@
                             <div class="col-9 text-left">
                                 <h6 class="my-0 py-0 cairo font-1">حالة الموقع</h6>
                                 <h6 class="my-0 py-0 cairo mt-2" style="font-size: 16px;letter-spacing: 0px;font-weight: bold;">
-                                    @php 
+                                    @php
                                     $is_fixing = \App\Setting::get()->first();
                                     if(null!==$is_fixing&&$is_fixing['fixing']==0)
                                         echo "<span style='color:red'>تحت الصيانة</span>";
                                     else echo "<span style='color:green'>يعمل</span>";
                                     @endphp
-                                    
+
                                 </h6>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
 
             <div class=" col-12  row py-4 px-1 px-md-3 mt-2" style=" position: relative;background: #fff;border-radius: 8px!important;box-shadow: 0px 0px 10px #ddd!important;">
                 <div class="col-12 px-0">
-                      
+
                     <form method="POST" action="{{route('settings.update')}}">
                         @csrf
                          <div class="col-12 mb-3">
@@ -93,7 +93,7 @@
                              <div class="col-12 mt-2 row">
                                  <input type="hidden" name="fixing" value="false">
                                  <input type="checkbox" name="fixing" style="height: 25px;width: 25px;" class="d-inline-block"  {{$settings['fixing']=="1"?'checked="true"':''}} value="true">
-                                 <span class="d-inline-block cairo mr-2" > يعمل </span> 
+                                 <span class="d-inline-block cairo mr-2" > يعمل </span>
                              </div>
                          </div>
 
@@ -108,7 +108,7 @@
                                     <option value="square" {{ ( $settings["style"]=="square") ? 'selected' : '' }}   >مربع</option>
                                     <option value="circle" {{ ( $settings["style"]=="circle") ? 'selected' : '' }}   >دائرة</option>
                                 </select>
-                             
+
                              </div>
                          </div>
 
@@ -117,12 +117,12 @@
                                  المواقع المعروضة
                              </div>
                              <div class="col-12 mt-2 row">
-                                 <input class="form-control" name="number_of_sites"  autofocus="" type="number" value="{{$settings['number_of_sites']}}" min="1"> 
+                                 <input class="form-control" name="number_of_sites"  autofocus="" type="number" value="{{$settings['number_of_sites']}}" min="1">
                              </div>
                          </div>
 
 
-                         
+
 
 
 
@@ -137,7 +137,7 @@
                          </div>
                          <div class="col-12 mb-3">
                              <div class="col-12 cairo">
-                                 
+
                              </div>
                              <div class="col-12 mt-2 row">
                                  <button class="btn btn-success py-1 px-4">حفظ</button>
@@ -157,16 +157,16 @@
                <span class="btn btn-primary py-1 px-4" style="border-radius: 20px!important">إضافة موقع</span>
                </a>
             </div>
-            @php 
-            $websites=\App\Website::orderBy('id','DESC')->get();
+            @php
+            $websites=\App\Site::orderBy('id','DESC')->get();
             @endphp
             <table id="myTable" class="table table-striped table-bordered col-12 " style="padding: 0px;">
                 <thead>
                     <tr>
                         <th>الكود</th>
                         <th>إسم</th>
-                        <th>رابط</th> 
-                        <th>حالة</th>
+                        <th>رابط</th>
+{{--                        <th>حالة</th>--}}
                         <th>نص</th>
                         <th>عملية</th>
                     </tr>
@@ -177,7 +177,7 @@
                         <td>{{$website->id}}</td>
                         <td>{{$website->title}}</td>
                         <td>{{$website->link}}</td>
-                        <td>{{$website->visible}}</td>
+{{--                        <td>{{$website->visible}}</td>--}}
                         <td>{{$website->description}}</td>
                         <td style="max-width: 100px">
                             <a href='{{route('website.edit',['id'=>$website->id])}}' data-toggle="tooltip" data-placement="bottom" title="تعديل">
@@ -196,7 +196,7 @@
     </div>
 </div>
 <div class=" col-12  row p-1   mt-2" style=" position: relative;background: #fff;border-radius: 8px!important;box-shadow: 0px 0px 10px #ddd!important;overflow: hidden;">
-    <div class="col-12 px-0 row"> 
+    <div class="col-12 px-0 row">
         <iframe src="{{env('APP_URL')}}" style="width: 100%;min-height: 100vh"></iframe>
     </div>
 </div>
@@ -205,7 +205,7 @@
 
 <script type="text/javascript">
     $('.remove-site').on('click',function(){
-       
+
         Swal.fire({
           title: 'هل انت متأكد من حذف الموقع',
           text: "سوف يتم حذف الموقع والبيانات الخاصة به هل تريد الاستمرار",
@@ -226,7 +226,7 @@
 </script>
 
 
- 
+
 
 
 
