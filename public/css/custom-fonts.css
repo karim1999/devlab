@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "JFFlat-Regular";
+  src: url("../fonts/flat-jooza-regular.eot"); /* IE9 Compat Modes */
+  src: url("../fonts/flat-jooza-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/flat-jooza-regular.otf") format("opentype"), /* Open Type Font */
+    url("../fonts/flat-jooza-regular.svg") format("svg"), /* Legacy iOS */
+    url("../fonts/flat-jooza-regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../fonts/flat-jooza-regular.woff") format("woff"), /* Modern Browsers */
+    url("../fonts/flat-jooza-regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
